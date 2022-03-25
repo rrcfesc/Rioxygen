@@ -1,0 +1,37 @@
+version: '3.4'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        USER_ID: ${USER_ID}
+        GROUP_ID: ${GROUP_ID}
+    ports:
+      - "8100:80"
+    expose:
+      - "9000"
+      - "9003"
+    environment:
+      APP_DEBUG: 1
+      PHP_XDEBUG_ENABLED: 1
+      XDEBUG_CONFIG: ${XDEBUG_CONFIG:-client_host=host.docker.internal}
+      PHP_IDE_CONFIG: "serverName=Backend"
+    volumes:
+      - ./:/var/www/html
+    container_name: ${PROJECT_NAME}_web
+  database:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: ${DB_NAME}
+    volumes:
+      - rioxygen_data:/var/lib/mysql
+    ports:
+      - "3101:3306"
+    container_name: ${PROJECT_NAME}_db
+volumes:
+  rioxygen_data: null
+  composer_cache: null
+

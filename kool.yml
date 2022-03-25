@@ -1,0 +1,10 @@
+scripts:
+  bash: kool exec -- --user=www-data web bash
+  console: kool exec -- --user=www-data web php ./bin/console
+  phpunit: kool exec -- --user=www-data web php ./bin/phpunit
+  composer: kool exec -- --user=www-data web composer
+  mysql: kool exec -e MYSQL_PWD=$DB_PASSWORD database mysql -uroot
+  npm: kool exec -- --user=www-data web npm
+
+  setup:
+    - kool run composer install

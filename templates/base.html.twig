@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Answer Form">
+    <title>{% block title %}{{ 'Rioxygen' | trans | capitalize }}{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <!-- Footer -->
+    <footer class="fixed-bottom">
+        {% block footer %}
+            {% include 'sections/footer.html.twig' %}
+        {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </footer>
+</body>

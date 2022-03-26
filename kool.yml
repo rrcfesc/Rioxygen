@@ -8,3 +8,6 @@ scripts:
 
   setup:
     - kool run composer install
+    - kool run console assets:install --symlink public
+    - kool run npm i
+    - kool run npm run dev

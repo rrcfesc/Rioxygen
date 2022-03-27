@@ -40,3 +40,6 @@
     <!-- Carousel End -->
   </div>
 </template>
+<script>
+
+</script>

@@ -27,6 +27,17 @@ Encore
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
 
+    .addLoader({
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/,
+        options: {
+            fix: true,
+            emitError: true,
+            emitWarning: true,
+        },
+    })
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
     .addAliases({

@@ -1,4 +1,5 @@
 import './styles/app.scss';
+import 'owl.carousel/dist/assets/owl.carousel.css';
 
 import { createApp } from 'vue'
 import { routes } from './routes';

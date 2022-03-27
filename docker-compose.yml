@@ -9,6 +9,7 @@ services:
         GROUP_ID: ${GROUP_ID}
     ports:
       - "8100:80"
+      - "8080:8080"
     expose:
       - "9000"
       - "9003"

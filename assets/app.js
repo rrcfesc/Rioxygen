@@ -1,7 +1,7 @@
 import './styles/app.scss';
 
 import { createApp } from 'vue'
+import { routes } from './routes';
+import App from "./components/App";
 
-createApp({
-    template: '<h1>Hi</h1>'
-}).mount('#app')
+createApp(App).mount('#app')

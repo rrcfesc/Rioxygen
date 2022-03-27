@@ -1,10 +1,12 @@
 const Encore = require('@symfony/webpack-encore');
+var path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
+
 
 Encore
     // directory where compiled assets will be stored
@@ -27,11 +29,14 @@ Encore
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
+    .addAliases({
+        '@': path.resolve(__dirname, 'assets', 'js'),
+        styles: path.resolve(__dirname, 'assets', 'scss'),
+    })
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
-
     /*
      * FEATURE CONFIG
      *
@@ -59,6 +64,11 @@ Encore
     .enableSassLoader()
     .enableVueLoader()
 
+    .configureCssLoader((config) => {
+        if (!Encore.isProduction() && config.modules) {
+            config.modules.localIdentName = '[name]_[local]_[hash:base64:5]';
+        }
+    })
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
 
@@ -73,4 +83,7 @@ Encore
     //.autoProvidejQuery()
 ;
 
+if (!Encore.isProduction()) {
+    Encore.disableCssExtraction();
+}
 module.exports = Encore.getWebpackConfig();

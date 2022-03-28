@@ -32,7 +32,7 @@ services:
     ports:
       - "3101:3306"
     container_name: ${PROJECT_NAME}_db
+###< doctrine/doctrine-bundle ###
 volumes:
   rioxygen_data: null
   composer_cache: null
-

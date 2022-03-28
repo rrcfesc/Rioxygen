@@ -1,8 +1,8 @@
 <template>
   <main>
-    <Spinner />
-    <NavBar />
-    <Carrousel />
+    <spinner />
+    <nav-bar />
+    <carrousel />
   </main>
 </template>
 <script>

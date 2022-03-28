@@ -15,35 +15,20 @@ Encore
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
-
     /*
      * ENTRY CONFIG
      *
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/app.js')
+    .addEntry('app', './assets/js/app.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
 
-    .addLoader({
-        enforce: 'pre',
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/,
-        options: {
-            fix: true,
-            emitError: true,
-            emitWarning: true,
-        },
-    })
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
-    .addAliases({
-        '@': path.resolve(__dirname, 'assets', 'js'),
-        styles: path.resolve(__dirname, 'assets', 'scss'),
-    })
+
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
@@ -94,7 +79,7 @@ Encore
     //.autoProvidejQuery()
 ;
 
-if (!Encore.isProduction()) {
-    Encore.disableCssExtraction();
-}
+// if (!Encore.isProduction()) {
+//     Encore.disableCssExtraction();
+// }
 module.exports = Encore.getWebpackConfig();

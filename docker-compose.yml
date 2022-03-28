@@ -20,6 +20,7 @@ services:
       PHP_IDE_CONFIG: "serverName=Backend"
     volumes:
       - ./:/var/www/html
+      - ./ssh:/var/www/.ssh
     container_name: ${PROJECT_NAME}_web
   database:
     image: mysql:8

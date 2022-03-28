@@ -10,35 +10,27 @@ require 'recipe/symfony4.php';
 set('application', 'rioxygen_website');
 
 // Project repository
-set('repository', 'git@gitlab.com:koitec/unitec-forms.git');
+set('repository', 'git@github.com:rrcfesc/Rioxygen.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true);
 
-set('shared_dirs', []);
-set('shared_files', []);
 // Shared files/dirs between deploys
 add('shared_files', [
     '.env',
 ]);
 add('shared_dirs', [
-    'files',
-    'public/pdf',
-    'public/newPdfFolder'
 ]);
 
 // Writable dirs by web server
 add('writable_dirs', [
-    'files',
-    'public/pdf',
-    'public/newPdfFolder'
 ]);
 
 
 // Hosts
 
 host('rioxygen.xyz')
-    ->set('deploy_path', '/var/www/unitec_forms');
+    ->set('deploy_path', '/var/www/rioxygen_website');
 
 task('deploy:warmup', function () {
     desc("Warmup");
@@ -47,6 +39,10 @@ task('deploy:warmup', function () {
 
 });
 //// Tasks
+task('deploy:vendors', function () {
+    desc("Vendors");
+    run('cd {{release_path}} && composer install -o');
+});
 task('deploy:fos_routing', function () {
     desc("Fos Routing");
     run('cd {{release_path}} && ./bin/console assets:install --symlink public');
